@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Counter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .counter {
+      font-size: 14px;
+      margin-top: 10px;
+      color: #555;
+    }
+    .warning {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2 style="color: blueviolet;">Message Bar</h2>
+    <textarea id="message" maxlength="200" style="color: green;"  placeholder="Type your message here..."></textarea>
+    <div class="counter">
+      <span id="charCount"  style="color: orangered;">0</span> / <span id="remainingCount" style="color: orangered;">200</span> characters
+    </div>
+    <div id="warningMessage" class="warning" style="display: none;">Character limit exceeded!</div>
+  </div>
+
+  <script>
+    const messageInput = document.getElementById('message');
+    const charCount = document.getElementById('charCount');
+    const remainingCount = document.getElementById('remainingCount');
+    const warningMessage = document.getElementById('warningMessage');
+    const maxLength = messageInput.getAttribute('maxlength');
+
+    messageInput.addEventListener('input', function () {
+      const currentLength = messageInput.value.length;
+      charCount.textContent = currentLength;
+      remainingCount.textContent = maxLength - currentLength;
+
+      if (currentLength >= maxLength) {
+        warningMessage.style.display = 'block';
+      } else {
+        warningMessage.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
